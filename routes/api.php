@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AttendanceController;
+use App\Http\Controllers\Api\LeaveController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -14,4 +15,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/checkin', [AttendanceController::class, 'checkIn']);
     Route::get('/attendance', [AttendanceController::class, 'myAttendance']);
     Route::get('/attendance/today', [AttendanceController::class, 'today']);
+    // Leave
+    Route::post('/leave', [LeaveController::class, 'store']);
+    Route::get('/leave', [LeaveController::class, 'myLeaves']);
 });
