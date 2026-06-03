@@ -91,4 +91,32 @@ class AttendanceController extends Controller
             'attendance' => $attendance
         ]);
     }
+    // Get staff stats
+    public function myStats(Request $request)
+    {
+        $user = $request->user();
+
+        $present = Attendance::where('user_id', $user->id)
+        ->where('status', 'present')
+        ->count();
+
+        $late = Attendance::where('user_id', $user->id)
+        ->where('status', 'late')
+        ->count();
+
+        $absent = Attendance::where('user_id', $user->id)
+        ->where('status', 'absent')
+        ->count();
+
+        $leave = \App\Models\Leave::where('user_id', $user->id)
+        ->where('status', 'approved')
+        ->count();
+
+        return response()->json([
+        'present' => $present,
+        'late' => $late,
+        'absent' => $absent,
+        'leave' => $leave
+        ]);
+    }
 }
