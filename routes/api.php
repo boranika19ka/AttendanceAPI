@@ -23,4 +23,5 @@ Route::middleware('auth:sanctum')->group(function () {
     // Overtime
     Route::post('/overtime', [OvertimeController::class, 'store']);
     Route::get('/overtime', [OvertimeController::class, 'myOvertimes']);
+    Route::post('/change-password', [AuthController::class, 'changePassword']);
 });
