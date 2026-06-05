@@ -13,4 +13,7 @@ class Overtime extends Model
         'reason',
         'status'
     ];
+    public function user() {
+    return $this->belongsTo(User::class);
+    }
 }

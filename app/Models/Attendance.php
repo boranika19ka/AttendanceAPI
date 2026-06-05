@@ -13,4 +13,7 @@ class Attendance extends Model
         'check_out_time',
         'status'
     ];
+    public function user() {
+    return $this->belongsTo(User::class);
+    }   
 }
